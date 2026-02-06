@@ -21,6 +21,7 @@ void Timer::start() {
 
     if(remaining_seconds > 0){
         in_execution = true;
+        last_update_time = time(nullptr);// Mi segno che ore sono adesso
     }
 }
 
@@ -41,10 +42,35 @@ void Timer::set_time(int h, int m, int s) {
     add_second(s);
 }
 
+std::string Timer::get_time_string() const {
+    int h = remaining_seconds/3600;
+    int m = (remaining_seconds %3600)/60;
+    int s = remaining_seconds % 60;
 
-void Timer::decrement_seconds() {
-    if(in_execution && remaining_seconds > 0)
-        remaining_seconds--;
-    else
+    char buffer[80];
+
+    sprintf(buffer, "%02d:%02d:%02d", h,m,s);
+
+    return buffer;
+}
+
+
+void Timer::update_time() {
+    if(in_execution && remaining_seconds > 0){ // modificata pe rcontare i seconsi effettivi
+
+        time_t now = time(nullptr);
+
+        if(now > last_update_time){
+            int diff = now - last_update_time;
+            remaining_seconds -= diff;
+            last_update_time = now;
+
+            if(remaining_seconds < 0)
+                remaining_seconds = 0;
+        }
+
+    }else {
         in_execution = false;
+        return;
+    }
 }
