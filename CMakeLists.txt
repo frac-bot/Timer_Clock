@@ -10,6 +10,8 @@ add_executable(Timer_Clock main.cpp
         Clock.h
         Clock_Interface.cpp
         Clock_Interface.h
+        Button.h
+        Button.cpp
 )
 
 include_directories(${CURSES_INCLUDE_DIR})
