@@ -8,13 +8,17 @@ public:
 
     void draw(WINDOW *window);
 
-    void select();
-    void deselect();
+    bool is_selected() const{
+        return selected;
+    }
+
+   bool is_clicked(int mouse_y, int mouse_x, int win_abs_y, int win_abs_x);
 
 private:
     std::string label;
     int pos_y, pos_x;
     int width,height;
+    bool selected;
 };
 
 #endif //TIMER_CLOCK_BUTTON_H
