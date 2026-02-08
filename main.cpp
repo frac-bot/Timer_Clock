@@ -68,24 +68,42 @@ int main() {
             curs_set(1);
 
             WINDOW *win_input = newwin(8, 30, (LINES - 5) / 2, (COLS - 30) / 2);
+            keypad(win_input, TRUE); //per evitare problemi con le frecce
             box(win_input, 0, 0);
 
             mvwprintw(win_input, 1, 2, "Set Timer:");
             mvwprintw(win_input, 2, 2, "h: ");
             mvwprintw(win_input, 3, 2, "m: ");
             mvwprintw(win_input, 4, 2, "s: ");
-            mvwprintw(win_input,8,8, "MAX 100h"); //credo sia inutile un timer con troppe ore.
+            mvwprintw(win_input, 5, 20, "MAX 4ch");
+            mvwprintw(win_input, 6, 20, "MAX 100h"); //credo sia inutile un timer con troppe ore.
 
             wrefresh(win_input);
 
             int h = 0, m = 0, s = 0;
-            mvwscanw(win_input, 2, 4, "%d", &h);//ore
-            mvwscanw(win_input, 3, 4, "%d", &m);//minuti
-            mvwscanw(win_input, 4, 4, "%d", &s);//secondi
+            mvwscanw(win_input, 2, 4, "%04d", &h);//ore
+            mvwscanw(win_input, 3, 4, "%04d", &m);//minuti
+            mvwscanw(win_input, 4, 4, "%04d", &s);//secondi
+            //limito le cifre lette per evitare problemi con la grandezza di int
 
-            if (h > 99) h = 99;
-            if (m > 59) m = 59;
-            if (s > 59) s = 59;
+            int total_seconds = (h * 3600) + (m * 60) + s;
+
+            int max_limit = 100 * 3600;
+
+            if (total_seconds > max_limit) {
+                h = 100;
+                m = 0;
+                s = 0;
+            }else{
+
+                h = total_seconds / 3600;
+
+                int seconds_rem = total_seconds % 3600;
+
+                m = seconds_rem / 60;
+                s = seconds_rem % 60;
+
+            }
 
             timer1.set_time(h, m, s);
 
