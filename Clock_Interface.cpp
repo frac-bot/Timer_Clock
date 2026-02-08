@@ -1,7 +1,8 @@
 #include "Clock_Interface.h"
 
 Clock_Interface::Clock_Interface() :
-start_stop_button(std::make_unique<Button>("START", 5,3)), reset_button(std::make_unique<Button>("RESET",5,27)){}
+start_stop_button(std::make_unique<Button>("START", 5,3)), reset_button(std::make_unique<Button>("RESET",5,27)),
+set_button(std::make_unique<Button>("SET",5, 16)){}
 
 void Clock_Interface::draw_clock(WINDOW* window, Clock& clock, int color_id) {
 
@@ -51,6 +52,7 @@ void Clock_Interface::draw_timer(WINDOW *window, Timer &timer, int color_id) {
 
 
     start_stop_button->draw(window);
+    set_button->draw(window);
     reset_button->draw(window);
 
     wattroff(window, COLOR_PAIR(color_id));
@@ -60,7 +62,7 @@ void Clock_Interface::draw_timer(WINDOW *window, Timer &timer, int color_id) {
 }
 
 
-Buttons_type Clock_Interface::Timer_input(int key, int win_y, int win_x) {
+Buttons_type Clock_Interface::Timer_input(int key, int win_y, int win_x) { //Da modificare ASSOLUTAMENTE con IS_CLICKEd
 
     if(key == KEY_MOUSE) {
         MEVENT event;
@@ -71,6 +73,9 @@ Buttons_type Clock_Interface::Timer_input(int key, int win_y, int win_x) {
 
                 if(start_stop_button->is_clicked(event.y, event.x, win_y, win_x)){
                     return Buttons_type::START_STOP;
+                }
+                if (set_button->is_clicked(event.y, event.x, win_y, win_x)) {
+                    return Buttons_type::SET;
                 }
                 if(reset_button->is_clicked(event.y, event.x, win_y, win_x)){
                     return Buttons_type::RESET;

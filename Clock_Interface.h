@@ -7,7 +7,7 @@
 #include "Timer.h"
 #include "Button.h"
 
-enum class Buttons_type { START_STOP, RESET, NONE };
+enum class Buttons_type { START_STOP, SET, RESET, NONE };
 
 class Clock_Interface{
 public:
@@ -24,6 +24,7 @@ private:
 
     std::unique_ptr<Button> start_stop_button;
     std::unique_ptr<Button> reset_button;
+    std::unique_ptr<Button> set_button;
 };
 
 #endif //TIMER_CLOCK_CLOCK_INTERFACE_H
