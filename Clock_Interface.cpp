@@ -1,7 +1,7 @@
 #include "Clock_Interface.h"
 
 Clock_Interface::Clock_Interface() :
-start_stop_button(std::make_unique<Button>("START_STOP", 5,5)), reset_button(std::make_unique<Button>("RESET",5,25)) {}
+start_stop_button(std::make_unique<Button>("START", 5,3)), reset_button(std::make_unique<Button>("RESET",5,27)){}
 
 void Clock_Interface::draw_clock(WINDOW* window, Clock& clock, int color_id) {
 
@@ -56,4 +56,29 @@ void Clock_Interface::draw_timer(WINDOW *window, Timer &timer, int color_id) {
     wattroff(window, COLOR_PAIR(color_id));
     wrefresh(window);
 
+
 }
+
+
+Buttons_type Clock_Interface::Timer_input(int key, int win_y, int win_x) {
+
+    if(key == KEY_MOUSE) {
+        MEVENT event;
+
+        if (getmouse(&event) == OK){
+
+            if(event.bstate & BUTTON1_CLICKED){
+
+                if(start_stop_button->is_clicked(event.y, event.x, win_y, win_x)){
+                    return Buttons_type::START_STOP;
+                }
+                if(reset_button->is_clicked(event.y, event.x, win_y, win_x)){
+                    return Buttons_type::RESET;
+                }
+            }
+        }
+
+    }
+    return Buttons_type::NONE;
+}
+

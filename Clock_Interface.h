@@ -7,6 +7,8 @@
 #include "Timer.h"
 #include "Button.h"
 
+enum class Buttons_type { START_STOP, RESET, NONE };
+
 class Clock_Interface{
 public:
     Clock_Interface();
@@ -14,6 +16,9 @@ public:
     void draw_clock(WINDOW* window, Clock& clock, int color_id);
 
     void draw_timer(WINDOW *window, Timer& timer, int color_id);
+
+    Buttons_type Timer_input(int hey, int win_y, int win_x);
+
 private:
     int win_height, win_width;
 
