@@ -65,8 +65,10 @@ void Timer::update_time() {
             remaining_seconds -= diff;
             last_update_time = now;
 
-            if(remaining_seconds < 0)
+            if(remaining_seconds <= 0) {
                 remaining_seconds = 0;
+                in_execution = false; // quando il timer va a 0 in_execution = false
+            }
         }
 
     }else {
