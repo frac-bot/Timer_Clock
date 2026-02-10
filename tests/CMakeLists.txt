@@ -7,6 +7,7 @@ set(SOURCE_FILES
     ../Timer.cpp
     ../Clock.cpp
         test_clock.cpp
+        tets_timer.cpp
 )
 
 add_executable(run_tests ${SOURCE_FILES})
