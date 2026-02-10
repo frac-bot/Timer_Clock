@@ -36,7 +36,7 @@ TEST(timer_test, test_update){
     EXPECT_STREQ(time_string.c_str(), "00:59:59");
 }
 
-TEST(timer_test, tets_input){
+TEST(timer_test, test_input){
 
     t.set_time(0,0,300);
     std::string time_string1 = t.get_time_string();
