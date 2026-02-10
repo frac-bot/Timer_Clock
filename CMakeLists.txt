@@ -16,3 +16,5 @@ add_executable(Timer_Clock main.cpp
 
 include_directories(${CURSES_INCLUDE_DIR})
 target_link_libraries(Timer_Clock ${CURSES_LIBRARIES})
+
+add_subdirectory(tests)
