@@ -75,7 +75,7 @@ TEST(timer_test, test_more_reset) {
 
     t.set_time(0, 0, 2);
     t.start();
-    EXPECT_TRUE(t.is_in_execution()); // Deve ripartire!
+    EXPECT_TRUE(t.is_in_execution());
 
     sleep(1);
     t.update_time();
