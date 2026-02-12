@@ -24,15 +24,15 @@ TEST(timer_test, test_set_time){
 
 TEST(timer_test, test_update){
 
-    t.set_time(1,0,0);
-    t.start();
+    t.set_time(1, 0, 0);
 
-    sleep(1);
+    time_t fake_start_time = 100;
 
-    t.update_time();
+    t.start(fake_start_time);
+
+    t.update_time(fake_start_time + 1);
 
     std::string time_string = t.get_time_string();
-
     EXPECT_STREQ(time_string.c_str(), "00:59:59");
 }
 
@@ -56,7 +56,7 @@ TEST(timer_test, test_in_execution) {
 
     EXPECT_TRUE(t.is_in_execution());
 
-    sleep(1);
+    usleep(1100000);
     t.update_time();
 
     std::string time_string = t.get_time_string();
@@ -67,18 +67,23 @@ TEST(timer_test, test_in_execution) {
 
 TEST(timer_test, test_more_reset) {
 
+    time_t fake_time = 100;
+
     t.set_time(0, 0, 1);
-    t.start();
-    sleep(1);
-    t.update_time();
+    t.start(fake_time);
+
+    t.update_time(fake_time + 1);
+
     EXPECT_FALSE(t.is_in_execution());
 
     t.set_time(0, 0, 2);
-    t.start();
+
+    fake_time = 200;
+    t.start(fake_time);
+
     EXPECT_TRUE(t.is_in_execution());
 
-    sleep(1);
-    t.update_time();
+    t.update_time(fake_time + 1);
 
     std::string time_string = t.get_time_string();
 

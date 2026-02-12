@@ -17,11 +17,16 @@ void Timer::add_second(int seconds) {
         remaining_seconds += seconds;
 }
 
-void Timer::start() {
+void Timer::start(time_t custom_time) {
 
     if(remaining_seconds > 0){
         in_execution = true;
-        last_update_time = time(nullptr);// Mi segno che ore sono adesso
+
+        if(custom_time == 0) {
+            last_update_time = time(nullptr);
+        } else{
+            last_update_time = custom_time;
+        }
     }
 }
 
@@ -55,10 +60,15 @@ std::string Timer::get_time_string() const {
 }
 
 
-void Timer::update_time() {
-    if(in_execution && remaining_seconds > 0){ // modificata pe rcontare i seconsi effettivi
+void Timer::update_time(time_t custom_time) {
+    if(in_execution && remaining_seconds > 0){
 
-        time_t now = time(nullptr);
+        time_t now;
+        if(custom_time == 0){
+            now = time(nullptr);
+        }else{
+            now = custom_time;
+        }
 
         if(now > last_update_time){
             int diff = now - last_update_time;
@@ -67,7 +77,7 @@ void Timer::update_time() {
 
             if(remaining_seconds <= 0) {
                 remaining_seconds = 0;
-                in_execution = false; // quando il timer va a 0 in_execution = false
+                in_execution = false;
             }
         }
 

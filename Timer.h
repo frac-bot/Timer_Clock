@@ -11,7 +11,7 @@ public:
     void add_minute(int s);
     void add_second(int s);
 
-    void start();
+    void start(time_t custom_time = 0);
     void pause();
     void reset();
     void set_time(int h, int m, int s);
@@ -22,12 +22,12 @@ public:
 
     std::string get_time_string() const;
 
-    void update_time(); //modificata
+    void update_time(time_t custom_time = 0);
 
 private:
     bool in_execution = false;
     int remaining_seconds = 0;
-    time_t last_update_time; // Per ricordarmi l'ultima volta che ho controllato
+    time_t last_update_time;
 };
 
 #endif //TIMER_CLOCK_TIMER_H
