@@ -1,6 +1,5 @@
 #include "Timer.h"
 
-Timer::Timer() = default;
 
 void Timer::add_hour(int seconds) {
     if(seconds > 0)

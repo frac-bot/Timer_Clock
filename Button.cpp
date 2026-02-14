@@ -25,7 +25,7 @@ void Button::draw(WINDOW* window) {
     mvwprintw(window, text_y, text_x, "%s", label.c_str());
 }
 
-bool Button::is_clicked(int mouse_y, int mouse_x, int win_abs_y, int win_abs_x) {
+bool Button::is_clicked(int mouse_y, int mouse_x, int win_abs_y, int win_abs_x) const {
 
     int button_abs_y = win_abs_y + pos_y;
     int button_abs_x = win_abs_x + pos_x;

@@ -35,7 +35,7 @@ int main() {
     int timer_y = 15;
 
     WINDOW* win_timer = newwin(9, width, 15, centred);
-    //INTERFACCIa
+    //INTERFACCIA
     std::unique_ptr<Clock_Interface> interface = std::make_unique<Clock_Interface>();
 
     bool running = true;
@@ -114,7 +114,7 @@ int main() {
             curs_set(0);
             nodelay(stdscr, TRUE);
 
-            mousemask(ALL_MOUSE_EVENTS | REPORT_MOUSE_POSITION, nullptr);//serve perche blobco i tasti mentre setto il timer
+            mousemask(ALL_MOUSE_EVENTS | REPORT_MOUSE_POSITION, nullptr);//serve perche blocco i tasti mentre setto il timer
 
             refresh();
 

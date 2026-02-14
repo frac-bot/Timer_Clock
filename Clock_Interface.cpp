@@ -62,7 +62,7 @@ void Clock_Interface::draw_timer(WINDOW *window, Timer &timer, int color_id) {
 }
 
 
-Buttons_type Clock_Interface::Timer_input(int key, int win_y, int win_x) { //Da modificare ASSOLUTAMENTE con IS_CLICKEd
+Buttons_type Clock_Interface::Timer_input(int key, int win_y, int win_x) {
 
     if(key == KEY_MOUSE) {
         MEVENT event;

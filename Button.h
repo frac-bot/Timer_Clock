@@ -12,7 +12,7 @@ public:
         return selected;
     }
 
-   bool is_clicked(int mouse_y, int mouse_x, int win_abs_y, int win_abs_x);
+   bool is_clicked(int mouse_y, int mouse_x, int win_abs_y, int win_abs_x) const;
 
 private:
     std::string label;

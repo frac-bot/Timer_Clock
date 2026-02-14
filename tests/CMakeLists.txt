@@ -15,7 +15,6 @@ add_executable(run_tests ${SOURCE_FILES})
 target_link_libraries(run_tests
         GTest::gtest
         GTest::gtest_main
-        ncurses
 )
 
 include(GoogleTest)

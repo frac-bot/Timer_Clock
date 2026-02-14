@@ -1,6 +1,6 @@
 #include "Clock.h"
 
-char Clock::buffer[80]; //va inizializzato qui se lo voglio mantenere static, ma ci sono anche altre soluzioni!
+char Clock::buffer[80];
 
 
 

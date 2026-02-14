@@ -5,7 +5,7 @@
 
 class Timer{
 public:
-    Timer();
+
 
     void add_hour(int s);
     void add_minute(int s);
